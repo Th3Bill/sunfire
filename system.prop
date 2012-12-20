@@ -1,0 +1,97 @@
+#
+# system.prop for sunfire
+#
+
+#RIL
+rild.libpath=/system/lib/rilwrap.so
+rild.wraplib=/system/lib/libmoto_ril.so
+persist.ril.mux.ttydevice=/dev/ttyHS3
+ro.telephony.call_ring.multiple=false
+ro.telephony.call_ring.delay=1000
+persist.ril.modem.ttydevice=/dev/ttySPI0
+persist.ril.modem.mode=1
+persist.ril.mux.retries=500
+persist.ril.mux.sleep=2
+ro.kernel.android.ril=yes
+persist.ril.pppd.start.fail.max=16
+mobiledata.interfaces=ppp0
+ro.ril.ntmodeglobal=true
+ro.telephony.ril.v3=datacall,signalstrength,skipbrokendatacall
+persist.ril.mux.noofchannels=10
+persist.ril.features=0x0C
+ro.cdma.data_retry_config=default_randomization=2000,0,0,120000,180000,540000,960000
+ro.gsm.data_retry_config=max_retries=infinite,default_randomization=2000,0,0,80000,125000,485000,905000
+ro.gsm.2nd_data_retry_config=max_retries=infinite,default_randomization=2000,0,0,80000,125000,485000,905000
+
+
+# CDMA Carrier support - Native carrier is Sprint
+ro.cdma.home.operator.numeric=310120
+ro.cdma.home.operator.alpha=Sprint
+ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83
+ro.cdma.otaspnumschema=SELC,1,80,99
+persist.radio.cdma.min=0
+
+
+#BEGIN Motorola, 30Jan2011, w19837, IKSUNFIRE-215, Feature ID: 35761.
+#[sprint tv transport protocol support]
+#sprint.mm.http.proxy = 0.0.0.0
+#sprint.mm.http.port = 0
+#sprint.mm.rtsp.proxy = 0.0.0.0
+#sprint.mm.rtsp.port = 0
+#sprint.mm.network.type = unknown
+#sprint.mm.nai = unknown
+#END IKSUNFIRE-215
+
+#Define TCP buffer sizes for various networks
+#ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
+net.tcp.buffersize.default=131072,262144,524288,4096,16384,147456
+net.tcp.buffersize.wifi=131072,262144,524288,4096,16384,147456
+net.tcp.buffersize.hspa=131072,262144,524288,4096,16384,147456
+net.tcp.buffersize.umts=131072,262144,524288,4096,16384,147456
+net.tcp.buffersize.edge=16384,32768,65536,4096,16384,32768
+net.tcp.buffersize.gprs=4096,8192,12288,4096,8192,12288
+
+# Default network type.
+# 0 -> WCDMA preferred
+ro.telephony.default_network=4
+
+# Time between scans in seconds. Keep it high to minimize battery drain.
+# This only affects the case in which there are remembered access points,
+# but none are in range.
+wifi.supplicant_scan_interval=30
+
+# To set wifi (AP) driver's firmware path
+ro.wifi-ap.fw-path=/system/etc/wl/sdio-g-cdc-roml-reclaim-wme-apsta-idauth-minioctl.bin
+
+ro.bt.bdaddr_path=/pds/bt/bt_bdaddr
+
+#OpenGL ES version
+ro.opengles.version = 131072
+
+# Forbid format of these partitions in mount menu :
+ro.cwm.forbid_format=/misc,/radio,/pds,/bootloader,/recovery,/efs
+
+# Tegra debugging
+persist.tegra.nvlog.level=4
+#persist.tegra.nvlog.14.level=5
+
+# DRM
+#persist.tegra.drmlib.asfdrm=libnvdrm.so
+#Drmdll.asfdrm=libnvdrm.so
+
+# Enable detailed GC data and SMP dexopt
+dalvik.vm.dexopt-flags=m=y,u=n
+
+# Enable HDMI mirroring
+ro.hdmi.mirror.enable=true
+
+persist.sys.usb.config=mass_storage
+
+# Allow people to exchange sdcard and emmc mountpoints from CMParts
+ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1
+
+# CRT animation speed
+debug.sf.electron_frames=36
+
+#hwui blacklist
+hwui.use.blacklist=true
