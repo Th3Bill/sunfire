@@ -79,7 +79,6 @@ $(call inherit-product, build/target/product/full_base_telephony.mk)
 
 
 PRODUCT_PACKAGES += make_ext4fs \
-			e2fsck \
  			setup_fs
 
 PRODUCT_PACKAGES += Usb \
