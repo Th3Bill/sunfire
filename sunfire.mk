@@ -40,7 +40,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
     ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
-	ro.sf.lcd_density=240
 
 # motorola helper scripts
 PRODUCT_COPY_FILES += \
@@ -51,10 +50,7 @@ PRODUCT_COPY_FILES += \
 # sysctl conf
 PRODUCT_COPY_FILES += \
     device/moto/sunfire/config/sysctl.conf:system/etc/sysctl.conf \
-    device/moto/sunfire/config/init.d/01sysctl:system/etc/init.d/01sysctl \
     device/moto/sunfire/config/audio_policy.conf:system/etc/audio_policy.conf
-
-PRODUCT_COPY_FILES += vendor/cm/prebuilt/common/bin/modelid_cfg.sh:system/bin/modelid_cfg.sh
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
@@ -77,22 +73,32 @@ $(call inherit-product-if-exists, vendor/moto/sunfire/sunfire-vendor.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
 
-
+#fs tools
 PRODUCT_PACKAGES += make_ext4fs \
+			e2fsck \
  			setup_fs
 
-PRODUCT_PACKAGES += Usb \
-			DockAudio \
-			Torch \
-			SunfireParts \
-			HwaSettings \
-			hciconfig \
-			hcitool \
-			rilwrap \
-			lights.sunfire \
-			camera.sunfire \
+#bluetooth
+PRODUCT_PACKAGES += hciconfig \
+			hcitool
+
+#Audio
+PRODUCT_PACKAGES += DockAudio \
 			audio.primary.sunfire \
+			audio.usb.default \
 			audio.a2dp.default
+
+#Camera and Torch
+PRODUCT_PACKAGES += Torch \
+			lights.sunfire \
+			camera.sunfire
+
+#Other
+PRODUCT_PACKAGES += Usb \
+			SunfireParts \
+			com.android.future.usb.accessory \
+			HwaSettings \
+			rilwrap 
 
 DEVICE_PACKAGE_OVERLAYS += device/moto/sunfire/overlay
 
@@ -140,14 +146,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += device/moto/sunfire/apns-conf.xml:system/etc/apns-conf.xml
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
 #debug
 PRODUCT_PROPERTY_OVERRIDES +=persist.sys.root_access=3 \
-    ro.debuggable=1 \
-    ro.secure=0 \
-    ro.allow.mock.location=1 \
-    persist.service.adb.enable=1
+		ro.debuggable=1 \
+		ro.secure=0 \
+		ro.allow.mock.location=1 \
+		persist.service.adb.enable=1
 
-PRODUCT_NAME := full_sunfire
+PRODUCT_NAME := generic_sunfire
 PRODUCT_DEVICE := sunfire
 PRODUCT_MODEL := MB855

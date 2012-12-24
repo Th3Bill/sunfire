@@ -30,16 +30,16 @@ BOARD_USES_GENERIC_AUDIO := false
 # inherit from the proprietary version
 -include vendor/moto/sunfire/BoardConfigVendor.mk
 
+TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := sunfire
 TARGET_BOARD_PLATFORM := tegra
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
-TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a
 TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_ARCH_VARIANT_FPU := vfpv3-d16
+TARGET_CPU_SMP := true
 TARGET_HAVE_TEGRA_ERRATA_657451 := true
 
 BOARD_CUSTOM_GRAPHICS := ../../../device/moto/sunfire/recovery/graphics.c
@@ -50,6 +50,7 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_BOOTANIMATION_USE_RGB565 := true
 
+# Kernel configuration for inline building
 TARGET_KERNEL_CONFIG := tegra_sunfire_cyanogenmod_defconfig
 TARGET_PREBUILT_KERNEL := device/moto/sunfire/kernel
 

@@ -1,6 +1,7 @@
 #
 # system.prop for sunfire
 #
+ro.sf.lcd_density=240
 
 #RIL
 rild.libpath=/system/lib/rilwrap.so
@@ -63,6 +64,7 @@ wifi.supplicant_scan_interval=30
 # To set wifi (AP) driver's firmware path
 ro.wifi-ap.fw-path=/system/etc/wl/sdio-g-cdc-roml-reclaim-wme-apsta-idauth-minioctl.bin
 
+#bluetooth
 ro.bt.bdaddr_path=/pds/bt/bt_bdaddr
 
 #OpenGL ES version
@@ -85,6 +87,7 @@ dalvik.vm.dexopt-flags=m=y,u=n
 # Enable HDMI mirroring
 ro.hdmi.mirror.enable=true
 
+# Default USB Mode
 persist.sys.usb.config=mass_storage
 
 # Allow people to exchange sdcard and emmc mountpoints from CMParts
