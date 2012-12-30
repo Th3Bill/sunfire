@@ -1,4 +1,0 @@
-sunfire
-=======
-
-Photon Device Tree
