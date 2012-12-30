@@ -25,21 +25,13 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 PRODUCT_COPY_FILES += \
     device/moto/sunfire/root/init.sunfire.rc:root/init.sunfire.rc \
-    device/moto/sunfire/root/init.trace.rc:root/init.trace.rc \
+    system/core/rootdir/init.trace.rc:root/init.trace.rc \
     device/moto/sunfire/root/init.sunfire.usb.rc:root/init.sunfire.usb.rc \
     device/moto/sunfire/root/ueventd.sunfire.rc:root/ueventd.sunfire.rc \
     device/moto/sunfire/root/fstab.sunfire:root/fstab.sunfire
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/moto/sunfire/sunfire-vendor.mk)
-
-## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.sms_segment_size=160 \
-    ro.telephony.call_ring.multiple=false \
-    ro.setupwizard.enable_bypass=1 \
-    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
-    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
 
 # motorola helper scripts
 PRODUCT_COPY_FILES += \
@@ -106,19 +98,18 @@ DEVICE_PACKAGE_OVERLAYS += device/moto/sunfire/overlay
 PRODUCT_COPY_FILES += \
     device/moto/sunfire/config/vold.fstab:system/etc/vold.fstab \
     device/moto/sunfire/scripts/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
-    device/moto/sunfire/prebuilts/liba2dp.so:system/lib/liba2dp.so \
     device/moto/sunfire/config/media_codecs.xml:system/etc/media_codecs.xml \
     device/moto/sunfire/config/media_profiles.xml:system/etc/media_profiles.xml 
 
 #keyboard files
 PRODUCT_COPY_FILES += \
-    device/moto/sunfire/keylayout/qtouch-obp-ts.kl:system/usr/keylayout/qtouch-obp-ts.kl \
-    device/moto/sunfire/config/qtouch-obp-ts.idc:system/usr/idc/qtouch-obp-ts.idc \
     device/moto/sunfire/keylayout/tegra-kbc.kl:system/usr/keylayout/tegra-kbc.kl \
     device/moto/sunfire/keychars/tegra-kbc.kcm.bin:system/usr/keychars/tegra-kbc.kcm.bin \
-    device/moto/sunfire/keylayout/qwerty.kl:system/usr/keylayout/BTC_USB_Cordless_Mouse.kl \
     device/moto/sunfire/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
+    device/moto/sunfire/keylayout/qwerty.kl:system/usr/keylayout/BTC_USB_Cordless_Mouse.kl \
     device/moto/sunfire/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+    device/moto/sunfire/keylayout/qtouch-obp-ts.kl:system/usr/keylayout/qtouch-obp-ts.kl \
+    device/moto/sunfire/config/qtouch-obp-ts.idc:system/usr/idc/qtouch-obp-ts.idc \
     device/moto/sunfire/keylayout/Motorola_Mobility_Motorola_HD_Dock.kl:system/usr/keylayout/Motorola_Mobility_Motorola_HD_Dock.kl \
     device/moto/sunfire/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
     device/moto/sunfire/keylayout/evfwd.kl:system/usr/keylayout/evfwd.kl \
@@ -143,7 +134,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
-PRODUCT_COPY_FILES += device/moto/sunfire/apns-conf.xml:system/etc/apns-conf.xml
+PRODUCT_COPY_FILES += device/moto/sunfire/prebuilts/apns-conf.xml:system/etc/apns-conf.xml
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 #debug
@@ -152,6 +143,13 @@ PRODUCT_PROPERTY_OVERRIDES +=persist.sys.root_access=3 \
 		ro.secure=0 \
 		ro.allow.mock.location=1 \
 		persist.service.adb.enable=1
+
+## non-GSM-specific aspects
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.sms_segment_size=160 \
+    ro.telephony.call_ring.multiple=false \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
 
 PRODUCT_NAME := generic_sunfire
 PRODUCT_DEVICE := sunfire

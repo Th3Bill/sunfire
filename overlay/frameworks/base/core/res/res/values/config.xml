@@ -53,11 +53,11 @@
     <!-- Common options are [1, 4] for TYPE_WIFI and TYPE_MOBILE_DUN or
     <!== [0,1,5,7] for TYPE_MOBILE, TYPE_WIFI, TYPE_MOBILE_HIPRI and TYPE_BLUETOOTH -->
     <integer-array translatable="false" name="config_tether_upstream_types">
-		<item>0</item>
+	<item>0</item>
         <item>1</item>
         <item>4</item>
-		<item>5</item>
-		<item>7</item>
+	<item>5</item>
+	<item>7</item>
     </integer-array>
 
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
@@ -287,10 +287,6 @@
          <item>9000</item>
     </integer-array>
 
-
-    <!-- Minimum screen brightness allowed by the power manager. -->
-    <integer name="config_screenBrightnessDim">5</integer>
-
     <!-- Array of output values for LCD backlight corresponding to the LUX values
          in the config_autoBrightnessLevels array.  This array should have size one greater
          than the size of the config_autoBrightnessLevels array.
@@ -406,7 +402,7 @@
          OMA-TS-UAProf-V2_0-20060206-A Section 8.1.1.1. If the URL contains a '%s'
          format string then that substring will be replaced with the value of
          Build.MODEL. The format string shall not be escaped. -->
-    <string name="config_useragentprofile_url" translatable="false"></string>
+    <string name="config_useragentprofile_url"></string>
 
     <!-- When a database query is executed, the results retuned are paginated
          in pages of size (in KB) indicated by this value -->
@@ -417,7 +413,7 @@
     <bool name="config_showMenuShortcutsWhenKeyboardPresent">false</bool>
 
     <!-- Do not translate. Defines the slots is Two Digit Number for dialing normally not USSD -->
-    <string-array name="config_twoDigitNumberPattern" translatable="false">
+    <string-array name="config_twoDigitNumberPattern">
     </string-array>
 
     <!-- The VoiceMail default value is displayed to my own number if it is true -->

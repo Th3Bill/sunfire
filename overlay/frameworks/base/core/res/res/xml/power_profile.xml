@@ -14,7 +14,6 @@
 ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
-** we really need to update this
 */
 -->
 
@@ -46,7 +45,7 @@
     <value>608000</value>
     <value>456000</value>
     <value>312000</value>
-    <value>216000</value>
+    <value>70216</value>
   </array>
   <!-- Power consumption in suspend -->
   <item name="cpu.idle">30</item>
