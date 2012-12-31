@@ -40,6 +40,7 @@ TARGET_ARCH_VARIANT := armv7-a
 TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_ARCH_VARIANT_FPU := vfpv3-d16
 TARGET_CPU_SMP := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_HAVE_TEGRA_ERRATA_657451 := true
 
 BOARD_CUSTOM_GRAPHICS := ../../../device/moto/sunfire/recovery/graphics.c

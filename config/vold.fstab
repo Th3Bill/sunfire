@@ -22,20 +22,12 @@
 ## <sysfs_path> - List of sysfs paths to source devices
 ######################
 
-# external SDCard
-dev_mount external_sd /storage/sdcard1 auto /devices/platform/tegra-sdhci.2/mmc_host/mmc3 /devices/platform/tegra-sdhci.2/mmc_host/mmc1
-
 # internal eMMC storage
-dev_mount sdcard /storage/sdcard0 18 /devices/platform/tegra-sdhci.3/mmc_host/mmc0
+dev_mount emmc /mnt/emmc 18 /devices/platform/tegra-sdhci.3/mmc_host/mmc0 nonremovable,encryptable
+
+# external SDCard
+dev_mount sdcard /mnt/sdcard auto /devices/platform/tegra-sdhci.2/mmc_host/mmc3 /devices/platform/tegra-sdhci.2/mmc_host/mmc1
 
 # flash drive connection to USB1
-dev_mount usbdisk0 /storage/usbdisk0 auto /devices/platform/tegra-ehci.0/usb1/1-1/1-1:1.0
+dev_mount usbdisk /mnt/usbdisk auto /devices/platform/tegra-ehci.0/usb
 
-# flash drive connection through hub connected to USB1
-dev_mount usbdisk1 /storage/usbdisk1 auto /devices/platform/tegra-ehci.0/usb1/1-1/1-1.1
-dev_mount usbdisk2 /storage/usbdisk2 auto /devices/platform/tegra-ehci.0/usb1/1-1/1-1.2
-dev_mount usbdisk3 /storage/usbdisk3 auto /devices/platform/tegra-ehci.0/usb1/1-1/1-1.3
-dev_mount usbdisk4 /storage/usbdisk4 auto /devices/platform/tegra-ehci.0/usb1/1-1/1-1.4
-dev_mount usbdisk5 /storage/usbdisk5 auto /devices/platform/tegra-ehci.0/usb1/1-1/1-1.5
-dev_mount usbdisk6 /storage/usbdisk6 auto /devices/platform/tegra-ehci.0/usb1/1-1/1-1.6
-dev_mount usbdisk7 /storage/usbdisk7 auto /devices/platform/tegra-ehci.0/usb1/1-1/1-1.7

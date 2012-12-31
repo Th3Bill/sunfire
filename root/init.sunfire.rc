@@ -4,24 +4,16 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
 
 on init
-    export EXTERNAL_STORAGE /storage/sdcard0
-    export SECONDARY_STORAGE /storage/sdcard1
+    export PHONE_STORAGE /mnt/emmc
+    export USBHOST_STORAGE /mnt/usbdisk
+    export EXTERNAL_STORAGE /mnt/sdcard
     # create mountpoints for storage
-    mkdir /storage 0050 system sdcard_r
-    mkdir /storage/sdcard0 0000 system system
-    mkdir /storage/sdcard1 0000 system system
-    symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/sdcard1 /extSdCard
-    mkdir /storage/usbdisk0 0000 system system
-    mkdir /storage/usbdisk1 0000 system system
-    mkdir /storage/usbdisk2 0000 system system
-    mkdir /storage/usbdisk3 0000 system system
-    mkdir /storage/usbdisk4 0000 system system
-    mkdir /storage/usbdisk5 0000 system system
-    mkdir /storage/usbdisk6 0000 system system
-    mkdir /storage/usbdisk7 0000 system system
+    mkdir /mnt/emmc 0000 system system
+    mkdir /mnt/usbdisk 0000 system system
+    mkdir /mnt/sdcard 0000 system system
+    symlink /mnt/emmc /emmc
+    symlink /mnt/sdcard /sdcard
+
     # battery driver permissions
     mkdir /pds 0755 root root
     mkdir /osh 0000 root root
