@@ -33,6 +33,14 @@ PRODUCT_COPY_FILES += \
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/moto/sunfire/sunfire-vendor.mk)
 
+## (3)  Non-GSM-specific aspects
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.sms_segment_size=160 \
+    ro.telephony.call_ring.multiple=false \
+    ro.setupwizard.enable_bypass=1 \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+
 # motorola helper scripts
 PRODUCT_COPY_FILES += \
     device/moto/sunfire/scripts/pds_perm_fix.sh:system/bin/pds_perm_fix.sh \
@@ -42,7 +50,10 @@ PRODUCT_COPY_FILES += \
 # sysctl conf
 PRODUCT_COPY_FILES += \
     device/moto/sunfire/config/sysctl.conf:system/etc/sysctl.conf \
+    device/moto/sunfire/config/init.d/01sysctl:system/etc/init.d/01sysctl \
     device/moto/sunfire/config/audio_policy.conf:system/etc/audio_policy.conf
+
+PRODUCT_COPY_FILES += vendor/cm/prebuilt/common/bin/modelid_cfg.sh:system/bin/modelid_cfg.sh
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
@@ -67,12 +78,13 @@ $(call inherit-product, build/target/product/full_base_telephony.mk)
 
 #fs tools
 PRODUCT_PACKAGES += make_ext4fs \
-			e2fsck \
  			setup_fs
 
 #bluetooth
-PRODUCT_PACKAGES += hciconfig \
-			hcitool
+PRODUCT_PACKAGES += l2ping \
+			hciconfig \
+			hcitool \
+			libnetcmdiface
 
 #Audio
 PRODUCT_PACKAGES += DockAudio \
@@ -98,8 +110,10 @@ DEVICE_PACKAGE_OVERLAYS += device/moto/sunfire/overlay
 PRODUCT_COPY_FILES += \
     device/moto/sunfire/config/vold.fstab:system/etc/vold.fstab \
     device/moto/sunfire/scripts/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
+    device/moto/sunfire/prebuilts/liba2dp.so:system/lib/liba2dp.so \
     device/moto/sunfire/config/media_codecs.xml:system/etc/media_codecs.xml \
-    device/moto/sunfire/config/media_profiles.xml:system/etc/media_profiles.xml 
+    device/moto/sunfire/config/media_profiles.xml:system/etc/media_profiles.xml \
+    device/moto/sunfire/bluetooth/bt_vendor.conf:system/etc/bt_vendor.conf
 
 #keyboard files
 PRODUCT_COPY_FILES += \
@@ -137,6 +151,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += device/moto/sunfire/prebuilts/apns-conf.xml:system/etc/apns-conf.xml
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
 #debug
 PRODUCT_PROPERTY_OVERRIDES +=persist.sys.root_access=3 \
 		ro.debuggable=1 \
@@ -144,13 +159,6 @@ PRODUCT_PROPERTY_OVERRIDES +=persist.sys.root_access=3 \
 		ro.allow.mock.location=1 \
 		persist.service.adb.enable=1
 
-## non-GSM-specific aspects
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.sms_segment_size=160 \
-    ro.telephony.call_ring.multiple=false \
-    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
-    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
-
-PRODUCT_NAME := generic_sunfire
+PRODUCT_NAME := full_sunfire
 PRODUCT_DEVICE := sunfire
 PRODUCT_MODEL := MB855

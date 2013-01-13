@@ -17,6 +17,6 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME "Motorola Photon"
+#define BTM_DEF_LOCAL_NAME "Motorola Photon 4G"
 
 #endif

@@ -24,7 +24,8 @@
          USB interfaces.  If the device doesn't want to support tething over USB this should
          be empty.  An example would be "usb.*" -->
     <string-array translatable="false" name="config_tether_usb_regexs">
-        <item>usb1</item>
+        <item>usb0</item>
+		<item>rndis0</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
@@ -53,11 +54,11 @@
     <!-- Common options are [1, 4] for TYPE_WIFI and TYPE_MOBILE_DUN or
     <!== [0,1,5,7] for TYPE_MOBILE, TYPE_WIFI, TYPE_MOBILE_HIPRI and TYPE_BLUETOOTH -->
     <integer-array translatable="false" name="config_tether_upstream_types">
-	<item>0</item>
+		<item>0</item>
         <item>1</item>
         <item>4</item>
-	<item>5</item>
-	<item>7</item>
+		<item>5</item>
+		<item>7</item>
     </integer-array>
 
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
@@ -402,7 +403,7 @@
          OMA-TS-UAProf-V2_0-20060206-A Section 8.1.1.1. If the URL contains a '%s'
          format string then that substring will be replaced with the value of
          Build.MODEL. The format string shall not be escaped. -->
-    <string name="config_useragentprofile_url"></string>
+    <string name="config_useragentprofile_url" translatable="false"></string>
 
     <!-- When a database query is executed, the results retuned are paginated
          in pages of size (in KB) indicated by this value -->
@@ -413,7 +414,7 @@
     <bool name="config_showMenuShortcutsWhenKeyboardPresent">false</bool>
 
     <!-- Do not translate. Defines the slots is Two Digit Number for dialing normally not USSD -->
-    <string-array name="config_twoDigitNumberPattern">
+    <string-array name="config_twoDigitNumberPattern" translatable="false">
     </string-array>
 
     <!-- The VoiceMail default value is displayed to my own number if it is true -->
@@ -429,6 +430,10 @@
     <string translatable="false" name="config_ntpServer">pool.ntp.org</string>
     <!-- Timeout to wait for NTP server response. -->
     <integer name="config_ntpTimeout">20000</integer>
+
+    <!-- Boolean indicating whether the start command should be called on the wireless interface
+         when starting the SoftAp -->
+    <bool name="config_wifiApStartInterface">true</bool>
 
     <!-- Default network policy warning threshold, in megabytes. -->
     <integer name="config_networkPolicyDefaultWarning">2048</integer>
@@ -446,7 +451,7 @@
         <item>"mobile_supl,3,0,2,60000,true"</item>
         <item>"mobile_dun,4,0,3,60000,true"</item>
         <item>"mobile_hipri,5,0,3,60000,true"</item>
-        <item>"mobile_bluetooth,7,7,1,-1,true"</item>
+        <item>"bluetooth,7,7,0,-1,true"</item>
     </string-array>
 
     <!-- An Array of "[ConnectivityManager connectionType],
@@ -466,4 +471,11 @@
 
     <!-- Enables built-in SIP phone capability -->
     <bool name="config_built_in_sip_phone">true</bool>
+
+    <!-- Possible names from /devices/virtual/switch/dock for a dock device.
+         Some kernels use names like CAR and DESK. -->
+    <string-array translatable="false" name="config_accessoryDockNames">
+        <item>"CAR"</item>
+        <item>"DESK"</item>
+    </string-array>
 </resources>

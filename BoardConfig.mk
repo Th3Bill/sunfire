@@ -36,11 +36,10 @@ TARGET_BOOTLOADER_BOARD_NAME := sunfire
 TARGET_BOARD_PLATFORM := tegra
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_SMP := true
 TARGET_ARCH_VARIANT := armv7-a
 TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_ARCH_VARIANT_FPU := vfpv3-d16
-TARGET_CPU_SMP := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_HAVE_TEGRA_ERRATA_657451 := true
 
 BOARD_CUSTOM_GRAPHICS := ../../../device/moto/sunfire/recovery/graphics.c
@@ -130,10 +129,9 @@ WIFI_DRIVER_SOCKET_IFACE    := eth0
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-
-# BT
-BOARD_BLUEDROID_VENDOR_CONF := device/moto/sunfire/libbt_vndcfg.txt
+BOARD_BLUEDROID_VENDOR_CONF := device/moto/sunfire/bluetooth/vnd_sunfire.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/sunfire/bluetooth
+BOARD_BLUETOOTH_LIBBT_VNDCFG := device/moto/sunfire/bluetooth/bt_vendor.conf
 
 #EGL
 BOARD_EGL_CFG := device/moto/sunfire/config/egl.cfg
@@ -141,6 +139,9 @@ COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_
 USE_OPENGL_RENDERER := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 BOARD_EGL_NEEDS_LEGACY_FB := true
+
+# Avoid the generation of ldrcc instructions
+NEED_WORKAROUND_CORTEX_A9_745320 := true
 
 #HDMI
 BOARD_USES_LGE_HDMI_ROTATION := true
@@ -157,6 +158,3 @@ BOARD_USE_MOTO_DOCK_HACK := true
 BOARD_USES_AUDIO_LEGACY := true
 
 BOARD_MOBILEDATA_INTERFACE_NAME := "ppp0"
-
-TARGET_SCREEN_WIDTH:=540
-TARGET_SCREEN_HEIGHT:=960

@@ -32,6 +32,15 @@ ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83
 ro.cdma.otaspnumschema=SELC,1,80,99
 persist.radio.cdma.min=0
 
+#Define TCP buffer sizes for various networks
+#ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
+net.tcp.buffersize.default=131072,262144,524288,4096,16384,147456
+net.tcp.buffersize.wifi=131072,262144,524288,4096,16384,147456
+net.tcp.buffersize.hspa=131072,262144,524288,4096,16384,147456
+net.tcp.buffersize.umts=131072,262144,524288,4096,16384,147456
+net.tcp.buffersize.edge=16384,32768,65536,4096,16384,32768
+net.tcp.buffersize.gprs=4096,8192,12288,4096,8192,12288
+
 # Default network type.
 # 0 -> WCDMA preferred
 ro.telephony.default_network=4
@@ -43,9 +52,6 @@ wifi.supplicant_scan_interval=30
 
 # To set wifi (AP) driver's firmware path
 ro.wifi-ap.fw-path=/system/etc/wl/sdio-g-cdc-roml-reclaim-wme-apsta-idauth-minioctl.bin
-
-#bluetooth
-ro.bt.bdaddr_path=/pds/bt/bt_bdaddr
 
 #OpenGL ES version
 ro.opengles.version = 131072
@@ -60,6 +66,10 @@ persist.tegra.nvlog.level=4
 # DRM
 #persist.tegra.drmlib.asfdrm=libnvdrm.so
 #Drmdll.asfdrm=libnvdrm.so
+
+# Set locale to English US by default
+ro.product.locale.language=en
+ro.product.locale.region=US
 
 # Enable detailed GC data and SMP dexopt
 dalvik.vm.dexopt-flags=m=y,u=n

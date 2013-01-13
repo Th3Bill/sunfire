@@ -196,6 +196,20 @@
 # touchpad related stuff
 /dev/touchpad             0770   root       system
 
+#fixing stuff
+/dev/knvmap	0660	system	system
+/dev/nvmap	0666	system	system
+/dev/ov5650	0660	media	camera
+/dev/dw9714l    0660    media   camera
+/dev/soc2030	0660	media	camera
+/dev/spdif*	0660	system	audio
+/dev/tegra_camera	0660	media	camera
+/dev/tegra_avp	0660	media	media
+/dev/tegra_rpc	0660	media	media
+/dev/tegra_sema	0660	media	media
+/dev/tegra-crypto	0660	system	system
+/dev/nvhdcp*    0660    system  system
+
 # sysfs properties
 /sys/devices/virtual/input/input*   enable      0660  root   input
 /sys/devices/virtual/input/input*   poll_delay  0660  root   input
