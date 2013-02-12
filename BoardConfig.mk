@@ -131,7 +131,8 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUEDROID_VENDOR_CONF := device/moto/sunfire/bluetooth/vnd_sunfire.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/moto/sunfire/bluetooth
-BOARD_BLUETOOTH_LIBBT_VNDCFG := device/moto/sunfire/bluetooth/bt_vendor.conf
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := true
+
 
 #EGL
 BOARD_EGL_CFG := device/moto/sunfire/config/egl.cfg

@@ -50,10 +50,7 @@ PRODUCT_COPY_FILES += \
 # sysctl conf
 PRODUCT_COPY_FILES += \
     device/moto/sunfire/config/sysctl.conf:system/etc/sysctl.conf \
-    device/moto/sunfire/config/init.d/01sysctl:system/etc/init.d/01sysctl \
     device/moto/sunfire/config/audio_policy.conf:system/etc/audio_policy.conf
-
-PRODUCT_COPY_FILES += vendor/cm/prebuilt/common/bin/modelid_cfg.sh:system/bin/modelid_cfg.sh
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
@@ -65,12 +62,6 @@ PRODUCT_LOCALES += hdpi
 
 # better code for dalvik heap size since we have space
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-
-# copy all kernel modules under the "modules" directory to system/lib/modules
-PRODUCT_COPY_FILES += $(shell \
-    find device/moto/sunfire/modules -name '*.ko' \
-    | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
-    | tr '\n' ' ')
 
 $(call inherit-product-if-exists, vendor/moto/sunfire/sunfire-vendor.mk)
 
@@ -113,7 +104,7 @@ PRODUCT_COPY_FILES += \
     device/moto/sunfire/prebuilts/liba2dp.so:system/lib/liba2dp.so \
     device/moto/sunfire/config/media_codecs.xml:system/etc/media_codecs.xml \
     device/moto/sunfire/config/media_profiles.xml:system/etc/media_profiles.xml \
-    device/moto/sunfire/bluetooth/bt_vendor.conf:system/etc/bt_vendor.conf
+    device/moto/sunfire/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 #keyboard files
 PRODUCT_COPY_FILES += \
@@ -151,6 +142,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += device/moto/sunfire/prebuilts/apns-conf.xml:system/etc/apns-conf.xml
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 
 #debug
 PRODUCT_PROPERTY_OVERRIDES +=persist.sys.root_access=3 \

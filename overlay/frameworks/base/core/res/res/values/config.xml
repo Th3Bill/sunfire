@@ -403,7 +403,7 @@
          OMA-TS-UAProf-V2_0-20060206-A Section 8.1.1.1. If the URL contains a '%s'
          format string then that substring will be replaced with the value of
          Build.MODEL. The format string shall not be escaped. -->
-    <string name="config_useragentprofile_url" translatable="false"></string>
+    <string name="config_useragentprofile_url"></string>
 
     <!-- When a database query is executed, the results retuned are paginated
          in pages of size (in KB) indicated by this value -->
@@ -414,7 +414,7 @@
     <bool name="config_showMenuShortcutsWhenKeyboardPresent">false</bool>
 
     <!-- Do not translate. Defines the slots is Two Digit Number for dialing normally not USSD -->
-    <string-array name="config_twoDigitNumberPattern" translatable="false">
+    <string-array name="config_twoDigitNumberPattern">
     </string-array>
 
     <!-- The VoiceMail default value is displayed to my own number if it is true -->
@@ -430,10 +430,6 @@
     <string translatable="false" name="config_ntpServer">pool.ntp.org</string>
     <!-- Timeout to wait for NTP server response. -->
     <integer name="config_ntpTimeout">20000</integer>
-
-    <!-- Boolean indicating whether the start command should be called on the wireless interface
-         when starting the SoftAp -->
-    <bool name="config_wifiApStartInterface">true</bool>
 
     <!-- Default network policy warning threshold, in megabytes. -->
     <integer name="config_networkPolicyDefaultWarning">2048</integer>
@@ -451,7 +447,7 @@
         <item>"mobile_supl,3,0,2,60000,true"</item>
         <item>"mobile_dun,4,0,3,60000,true"</item>
         <item>"mobile_hipri,5,0,3,60000,true"</item>
-        <item>"bluetooth,7,7,0,-1,true"</item>
+        <item>"mobile_bluetooth,7,7,1,-1,true"</item>
     </string-array>
 
     <!-- An Array of "[ConnectivityManager connectionType],
@@ -472,10 +468,33 @@
     <!-- Enables built-in SIP phone capability -->
     <bool name="config_built_in_sip_phone">true</bool>
 
+    <!-- Boolean indicating whether the start command should be called on the wireless interface
+         when starting the SoftAp -->
+    <bool name="config_wifiApStartInterface">true</bool>
+
     <!-- Possible names from /devices/virtual/switch/dock for a dock device.
          Some kernels use names like CAR and DESK. -->
     <string-array translatable="false" name="config_accessoryDockNames">
         <item>"CAR"</item>
         <item>"DESK"</item>
+    </string-array>
+
+    <!-- Bring multiuser in for wingray -->
+    <!-- Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">8</integer>
+
+    <!-- Enable Google Network Location Services -->
+    <string-array name="config_locationProviderPackageNames" translatable="false">
+    <!-- The standard AOSP fused location provider -->
+    <item>com.android.location.fused</item>
+    <!-- The Google Network Location Services location provider -->
+    <item>com.google.android.location</item>
+    </string-array>
+
+    <string-array name="config_cdma_dun_supported_types">
+        <item>default</item>
+        <item>dun</item>
+        <item>mms</item>
+        <item>supl</item>
     </string-array>
 </resources>

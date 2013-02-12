@@ -129,21 +129,24 @@ on boot
     # nvodmcam permissions
     chmod 666 /dev/nvodmcam
 
-    # bluetooth permissions
+# bluetooth
+    # UART device
     chmod 0664 /pds/bt/bt_bdaddr
     chmod 0660 /dev/ttyHS2
-    chown bluetooth bluetooth /dev/ttyHS2
+    chown bluetooth net_bt_stack /dev/ttyHS2
+
+    # power up/down interface
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chmod 0660 /sys/class/rfkill/rfkill0/type
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
     write /sys/class/rfkill/rfkill0/state 1
 
     # bluetooth for BCM
-    chown root bluetooth /proc/bt_power
-    chown root bluetooth /proc/bt_stat
-    chown root bluetooth /proc/bt_status
-    chown root bluetooth /proc/bluetooth/sleep/proto
+    chown root net_bt_stack /proc/bt_power
+    chown root net_bt_stack /proc/bt_stat
+    chown root net_bt_stack /proc/bt_status
+    chown root net_bt_stack /proc/bluetooth/sleep/proto
 
     chmod 0664 /proc/bt_power
     chmod 0664 /proc/bt_stat
@@ -393,8 +396,6 @@ service wpa_supplicant /system/bin/wpa_supplicant -D wext -i eth0 -c /data/misc/
 
 service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
     class WLAN
-    #user system  #- this makes socket() calls fail with permission denied
-    #group dhcp
     disabled
     oneshot
 
@@ -520,10 +521,6 @@ on boot
 
 # copy /system/etc/motorola/tcmd/cid_template.dat
     exec /system/bin/cp /system/etc/motorola/tcmd/cid_template.dat /data/local
-
-# Set the default value for bluedroid_ref
-    write /data/tmp/bluedroid_ref 0
-    chown system system /data/tmp/bluedroid_ref
 
 # Adjust Max Read buffer to have initial TCP Recv Win set to 64K
 # This will be overriding one defined in init.rc
