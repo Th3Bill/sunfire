@@ -50,8 +50,9 @@ PRODUCT_COPY_FILES += \
 # sysctl conf
 PRODUCT_COPY_FILES += \
     device/moto/sunfire/config/sysctl.conf:system/etc/sysctl.conf \
+    device/moto/sunfire/config/init.d/01sysctl:system/etc/init.d/01sysctl \
     device/moto/sunfire/config/audio_policy.conf:system/etc/audio_policy.conf
-
+    
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
 # Set en_US as default locale
@@ -143,13 +144,11 @@ PRODUCT_COPY_FILES += device/moto/sunfire/prebuilts/apns-conf.xml:system/etc/apn
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
-
 #debug
-PRODUCT_PROPERTY_OVERRIDES +=persist.sys.root_access=3 \
+PRODUCT_PROPERTY_OVERRIDES += \
+		persist.sys.root_access=3 \
 		ro.debuggable=1 \
 		ro.secure=0 \
-		ro.allow.mock.location=1 \
 		persist.service.adb.enable=1
 
 PRODUCT_NAME := full_sunfire

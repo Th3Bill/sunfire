@@ -52,7 +52,6 @@ TARGET_BOOTANIMATION_USE_RGB565 := true
 
 # Kernel configuration for inline building
 TARGET_KERNEL_CONFIG := tegra_sunfire_cyanogenmod_defconfig
-TARGET_PREBUILT_KERNEL := device/moto/sunfire/kernel
 
 SUNFIRE_WIFI_MODULE:
 	make -C kernel/moto/olympus/wifi-module/wlan/osrc/open-src/src/dhd/linux/ \
